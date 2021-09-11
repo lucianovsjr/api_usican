@@ -125,7 +125,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "api_usican.pagination.CustomPagination",
     "PAGE_SIZE": 10,
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
