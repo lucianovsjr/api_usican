@@ -9,3 +9,4 @@ class ClientView(ModelViewSet):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     permission_classes = [IsAuthenticated]
+    ordering_fields = ["id", "name"]
