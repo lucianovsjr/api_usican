@@ -1,12 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 
-from .models import Client
-from .serializers import ClientSerializer
+from .models import customer
+from .serializers import customerSerializer
 
 
-class ClientView(ModelViewSet):
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
+class customerView(ModelViewSet):
+    queryset = customer.objects.all()
+    serializer_class = customerSerializer
     permission_classes = [IsAuthenticated]
     ordering_fields = ["id", "name"]

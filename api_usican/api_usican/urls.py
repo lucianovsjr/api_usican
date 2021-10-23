@@ -3,11 +3,11 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from apps.sales.views import ClientView
+from apps.sales.views import customerView
 
 
 router = DefaultRouter()
-router.register("client", ClientView)
+router.register("customer", customerView)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
