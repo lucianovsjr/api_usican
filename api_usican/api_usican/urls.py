@@ -4,10 +4,13 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from apps.sales.views import customerView
+from apps.inventory.views import ProductTypeView, ProductView
 
 
 router = DefaultRouter()
 router.register("customer", customerView)
+router.register("product_type", ProductTypeView)
+router.register("product", ProductView)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
