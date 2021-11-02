@@ -14,7 +14,7 @@ class ProductTypeView(BaseModelViewSet):
     ordering_fields = ["id", "name"]
 
 
-class ProductView(ModelViewSet):
+class ProductView(BaseModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticated]
