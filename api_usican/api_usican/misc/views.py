@@ -13,6 +13,9 @@ class BaseModelViewSet(ModelViewSet):
         try:
             instance.delete()
         except ProtectedError as e:
-            error_message = get_error_message(instance, "PROTECTED")
-            return Response(data=error_message, status=status.HTTP_400_BAD_REQUEST)
+            error_message = get_error_message(instance, "PROTECT")
+            return Response(
+                data={"message": error_message},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         return Response(status=status.HTTP_204_NO_CONTENT)
