@@ -5,7 +5,7 @@ from api_usican.misc.models import BaseModel
 
 class ProductType(BaseModel):
     name = models.CharField(max_length=50)
-    description = models.TextField(blank=True, null=True)
+    description = models.CharField(max_length=200, blank=True, null=True)
     active = models.BooleanField(default=True, blank=True)
 
     def __str__(self):
@@ -13,8 +13,8 @@ class ProductType(BaseModel):
 
 
 class Product(BaseModel):
-    code = models.CharField(max_length=11, blank=True, null=False)
-    description = models.TextField(blank=False, null=False)
+    description = models.CharField(max_length=200, blank=False, null=False)
+    full_description = models.TextField(blank=True, null=True)
     product_type = models.ForeignKey(ProductType, on_delete=models.PROTECT)
     active = models.BooleanField(default=True, blank=True)
 
