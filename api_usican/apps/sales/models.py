@@ -4,7 +4,7 @@ from api_usican.misc.models import BaseModel
 from .const import *
 
 
-class customer(BaseModel):
+class Customer(BaseModel):
     legal_entity = models.CharField(
         max_length=1, choices=LEGAL_ENTITY, default=JURIDICAL_PERSON
     )

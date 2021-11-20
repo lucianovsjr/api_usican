@@ -7,12 +7,12 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-from apps.sales.views import customerView
+from apps.sales.views import CustomerView
 from apps.inventory.views import ProductTypeView, ProductView
 
 
 router = DefaultRouter()
-router.register("customer", customerView)
+router.register("customer", CustomerView)
 router.register("product_type", ProductTypeView)
 router.register("product", ProductView)
 
