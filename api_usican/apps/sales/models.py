@@ -32,3 +32,21 @@ class Customer(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Contact(BaseModel):
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    name = models.CharField("Nome completo", max_length=40, blank=False, null=False)
+    cargo = models.CharField("Cargo", max_length=20, blank=False, null=False)
+
+    email = models.EmailField(max_length=30, default="", blank=True)
+    phone_number = models.CharField(max_length=14, default="", blank=True)
+    phone_number2 = models.CharField(max_length=14, default="", blank=True)
+
+    active = models.BooleanField(default=True, blank=False)
+
+    class Meta:
+        ordering = ["id"]
+
+    def __str__(self):
+        return "{0} - {1}".format(self.name, self.cargo)
