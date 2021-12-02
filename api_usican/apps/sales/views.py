@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from api_usican.misc.views import BaseModelViewSet
 from .models import Customer, Contact
 from .serializers import CustomerSerializer, ContactSerializer
+from .filters import CustomerFilter, ContactFilter
 
 
 class CustomerView(BaseModelViewSet):
@@ -11,6 +12,7 @@ class CustomerView(BaseModelViewSet):
     serializer_class = CustomerSerializer
     permission_classes = [IsAuthenticated]
     ordering_fields = ["id", "name"]
+    filterset_class = CustomerFilter
 
 
 class ContactView(BaseModelViewSet):
@@ -18,3 +20,4 @@ class ContactView(BaseModelViewSet):
     serializer_class = ContactSerializer
     permission_classes = [IsAuthenticated]
     ordering_fields = ["id", "name"]
+    filterset_class = ContactFilter

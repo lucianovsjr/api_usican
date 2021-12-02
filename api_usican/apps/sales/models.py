@@ -37,7 +37,7 @@ class Customer(BaseModel):
 class Contact(BaseModel):
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
     name = models.CharField("Nome completo", max_length=40, blank=False, null=False)
-    cargo = models.CharField("Cargo", max_length=20, blank=False, null=False)
+    position = models.CharField("Cargo", max_length=20, blank=False, null=False)
 
     email = models.EmailField(max_length=30, default="", blank=True)
     phone_number = models.CharField(max_length=14, default="", blank=True)
