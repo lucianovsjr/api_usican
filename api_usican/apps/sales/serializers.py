@@ -1,9 +1,21 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 
-from .models import customer
+from .models import Customer, Contact
 
 
-class customerSerializer(ModelSerializer):
+class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = customer
+        model = Customer
         fields = "__all__"
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    customer_name = serializers.CharField(source="customer.name", read_only=True)
+    link_redirect = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Contact
+        fields = "__all__"
+
+    def get_link_redirect(self, obj):
+        return f"/customer/{obj.customer.id}/3"
