@@ -1,15 +1,12 @@
-import django_filters
+from django_filters import rest_framework as filters
 
-from .models import Customer, Contact
+from .models import Customer
 
 
-class CustomerFilter(django_filters.FilterSet):
+class CustomerFilter(filters.FilterSet):
+    name = filters.CharFilter(lookup_expr="icontains")
+    email = filters.CharFilter(lookup_expr="icontains")
+
     class Meta:
         model = Customer
-        fields = "__all__"
-
-
-class ContactFilter(django_filters.FilterSet):
-    class Meta:
-        model = Contact
-        fields = "__all__"
+        fields = ["name", "email", "active"]
