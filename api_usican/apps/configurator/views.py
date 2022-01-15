@@ -11,4 +11,4 @@ class CustomOptionView(BaseModelViewSet):
     serializer_class = CsutomOptionSerializer
     permission_class = [IsAuthenticated]
     ordering_fields = ["id", "name"]
-    filterset_class = None
+    filterset_fields = ["name"]
