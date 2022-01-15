@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django_filters",
     "apps.sales",
     "apps.inventory",
+    "apps.configurator",
 ]
 
 MIDDLEWARE = [
