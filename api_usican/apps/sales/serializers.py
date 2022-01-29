@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Customer, Contact
+from .models import Customer, Contact, BudgetRequest
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -19,3 +19,9 @@ class ContactSerializer(serializers.ModelSerializer):
 
     def get_link_redirect(self, obj):
         return f"/customer/{obj.customer.id}/3"
+
+
+class BudgetRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BudgetRequest
+        fields = "__all__"

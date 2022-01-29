@@ -7,17 +7,19 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
-from apps.sales.views import CustomerView, ContactView
+from apps.sales.views import CustomerView, ContactView, BudgetRequestView
 from apps.inventory.views import ProductTypeView, ProductView
-from apps.configurator.views import CustomOptionView
+from apps.configurator.views import CustomOptionView, CustomOptionItemView
 
 
 router = DefaultRouter()
 router.register("customer", CustomerView)
 router.register("contact", ContactView)
+router.register("budget_request", BudgetRequestView)
 router.register("product_type", ProductTypeView)
 router.register("product", ProductView)
 router.register("custom_option", CustomOptionView)
+router.register("custom_option_item", CustomOptionItemView)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
