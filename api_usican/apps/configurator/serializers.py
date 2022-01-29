@@ -9,3 +9,9 @@ class CsutomOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomOption
         fields = ["name", "items"]
+
+
+class CsutomOptionItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomOptionItem
+        fields = ["id", "name"]

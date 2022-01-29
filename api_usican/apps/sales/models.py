@@ -1,6 +1,6 @@
 from django.db import models
 
-from api_usican.misc.models import BaseModel
+from api_usican.misc.models import BaseModel, BaseRegisterModel
 from .const import *
 
 
@@ -50,3 +50,33 @@ class Contact(BaseModel):
 
     def __str__(self):
         return "{0} - {1}".format(self.name, self.cargo)
+
+
+class BudgetRequest(BaseRegisterModel):
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    contact = models.ForeignKey(
+        Contact, on_delete=models.PROTECT, blank=True, null=True
+    )
+    deadline = models.DateField(blank=True, null=True)
+    observation = models.TextField(blank=True, default="")
+    reason_decline = models.ForeignKey(
+        "configurator.CustomOptionItem",
+        on_delete=models.PROTECT,
+        related_name="budget_request_reason_decline_set",
+        blank=True,
+        null=True,
+    )
+    observation_reason = models.TextField(blank=True)
+    means_receipt = models.ForeignKey(
+        "configurator.CustomOptionItem",
+        on_delete=models.PROTECT,
+        related_name="budget_request_means_receipt_set",
+        blank=True,
+        null=True,
+    )
+    informed_customer_decline = models.BooleanField(default=False)
+    status = models.ForeignKey(
+        "configurator.CustomOptionItem",
+        on_delete=models.PROTECT,
+        related_name="budget_request_status_set",
+    )
