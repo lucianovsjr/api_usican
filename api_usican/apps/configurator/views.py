@@ -18,5 +18,5 @@ class CustomOptionItemView(BaseModelViewSet):
     queryset = CustomOptionItem.objects.all()
     serializer_class = CsutomOptionItemSerializer
     permission_class = [IsAuthenticated]
-    ordering_fields = ["id"]
+    ordering_fields = ["id", "name"]
     filterset_fields = ["custom_option__name"]

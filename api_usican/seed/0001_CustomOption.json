@@ -1,0 +1,23 @@
+[
+{
+    "model": "configurator.customoption",
+    "pk": 1,
+    "fields": {
+        "name": "budget_request.means_receipt"
+    }
+},
+{
+    "model": "configurator.customoption",
+    "pk": 2,
+    "fields": {
+        "name": "budget_request.status"
+    }
+},
+{
+    "model": "configurator.customoption",
+    "pk": 3,
+    "fields": {
+        "name": "budget_request.reason_decline"
+    }
+}
+]

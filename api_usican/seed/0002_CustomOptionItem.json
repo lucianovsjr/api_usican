@@ -1,0 +1,66 @@
+[
+{
+    "model": "configurator.customoptionitem",
+    "pk": 1,
+    "fields": {
+        "custom_option": 1,
+        "name": "Ligação"
+    }
+},
+{
+    "model": "configurator.customoptionitem",
+    "pk": 2,
+    "fields": {
+        "custom_option": 1,
+        "name": "E-mail"
+    }
+},
+{
+    "model": "configurator.customoptionitem",
+    "pk": 3,
+    "fields": {
+        "custom_option": 1,
+        "name": "Aplicativo de mensagem"
+    }
+},
+{
+    "model": "configurator.customoptionitem",
+    "pk": 4,
+    "fields": {
+        "custom_option": 2,
+        "name": "Aberto"
+    }
+},
+{
+    "model": "configurator.customoptionitem",
+    "pk": 5,
+    "fields": {
+        "custom_option": 2,
+        "name": "Orçado"
+    }
+},
+{
+    "model": "configurator.customoptionitem",
+    "pk": 6,
+    "fields": {
+        "custom_option": 2,
+        "name": "Declinado"
+    }
+},
+{
+    "model": "configurator.customoptionitem",
+    "pk": 7,
+    "fields": {
+        "custom_option": 2,
+        "name": "Cancelado"
+    }
+},
+{
+    "model": "configurator.customoptionitem",
+    "pk": 8,
+    "fields": {
+        "custom_option": 3,
+        "name": "Outros"
+    }
+}
+]
