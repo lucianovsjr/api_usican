@@ -1,0 +1,13 @@
+from django.db.models.signals import pre_save
+
+from .models import BudgetRequest
+
+from apps.configurator.models import CustomOptionItem
+
+
+def save_budget_request(sender, instance, **kwargs):
+    if instance.informed_customer_decline:
+        instance.status = CustomOptionItem.objects.get(pk=6)
+
+
+pre_save.connect(save_budget_request, sender=BudgetRequest)
