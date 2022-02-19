@@ -6,8 +6,10 @@ from apps.configurator.models import CustomOptionItem
 
 
 def save_budget_request(sender, instance, **kwargs):
+    decline_status = CustomOptionItem.objects.get(pk=6)
+
     if instance.informed_customer_decline:
-        instance.status = CustomOptionItem.objects.get(pk=6)
+        instance.status = decline_status
 
 
 pre_save.connect(save_budget_request, sender=BudgetRequest)
