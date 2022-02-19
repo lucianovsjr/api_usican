@@ -33,9 +33,26 @@ class BudgetRequestSerializer(serializers.ModelSerializer):
         data = super().validate(attrs)
         open_status = CustomOptionItem.objects.get(pk=4)
 
-        if self.instance.status != open_status:
-            raise serializers.ValidationError(
-                {"message": "usican.error.budget_request.edit_without_open_status"}
-            )
+        is_status_bulk_update = len(data) <= 2 and bool(data.get("status"))
+
+        if is_status_bulk_update and data.get("status") != self.instance.status:
+            decline_status = CustomOptionItem.objects.get(pk=6)
+            cancel_status = CustomOptionItem.objects.get(pk=7)
+
+            if data.get("status") == cancel_status:
+                if self.instance.status != open_status:
+                    raise serializers.ValidationError(
+                        {"message": "usican.error.budget_request.bulk_cancel_failure"}
+                    )
+            elif data.get("status") == open_status:
+                if not self.instance.status in (decline_status, cancel_status):
+                    raise serializers.ValidationError(
+                        {"message": "usican.error.budget_request.bulk_reopen_failure"}
+                    )
+        else:
+            if self.instance.status != open_status:
+                raise serializers.ValidationError(
+                    {"message": "usican.error.budget_request.edit_without_open_status"}
+                )
 
         return data
