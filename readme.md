@@ -14,3 +14,8 @@ python manage.py dumpdata configurator.CustomOption --indent 4 > seed/0001_test.
 ```bash
 python manage.py loaddata seed/0001_test.json
 ```
+
+# Docker
+```bash
+docker image build -t usican/api_usican:1 .
+```
