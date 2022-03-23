@@ -11,7 +11,11 @@ from rest_framework_simplejwt.views import (
 
 from apps.sales.views import CustomerView, ContactView, BudgetRequestView
 from apps.inventory.views import ProductTypeView, ProductView
-from apps.configurator.views import CustomOptionView, CustomOptionItemView
+from apps.configurator.views import (
+    CustomOptionView,
+    CustomOptionItemView,
+    PermissionView,
+)
 
 
 router = DefaultRouter()
@@ -22,6 +26,7 @@ router.register("product_type", ProductTypeView)
 router.register("product", ProductView)
 router.register("custom_option", CustomOptionView)
 router.register("custom_option_item", CustomOptionItemView)
+router.register("permission", PermissionView)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
