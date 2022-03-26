@@ -54,3 +54,14 @@ class PermissionView(BaseModelViewSet):
     permission_class = [IsAuthenticated]
     ordering_fields = ["id", "codename", "content_type__model"]
     filterset_fields = ["name", "codename", "content_type__model"]
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = getattr(self.request, "user")
+
+        if not user:
+            return Permission.objects.none()
+
+        return queryset.filter(
+            codename__in=[perm.split(".")[1] for perm in user.get_all_permissions()]
+        )
