@@ -21,6 +21,24 @@ CONTENT_TYPE_CUSTOM_OPTION = 12
 CONTENT_TYPE_CUSTOM_OPTION_ITEM = 13
 
 
+def get_permissions(user):
+    if not user:
+        return Permission.objects.none()
+
+    return Permission.objects.exclude(
+        content_type__in=(
+            CONTENT_TYPE_LOG_ENTRY,
+            CONTENT_TYPE_PERMISSION,
+            CONTENT_TYPE_GROUP,
+            CONTENT_TYPE_USER,
+            CONTENT_TYPE_CONTENT_TYPE,
+            CONTENT_TYPE_SESSION,
+            CONTENT_TYPE_CUSTOM_OPTION,
+            CONTENT_TYPE_CUSTOM_OPTION_ITEM,
+        )
+    ).filter(codename__in=[perm.split(".")[1] for perm in user.get_all_permissions()])
+
+
 class CustomOptionView(BaseModelViewSet):
     queryset = CustomOption.objects.all()
     serializer_class = CsutomOptionSerializer
@@ -38,30 +56,16 @@ class CustomOptionItemView(BaseModelViewSet):
 
 
 class PermissionView(BaseModelViewSet):
-    queryset = Permission.objects.exclude(
-        content_type__in=(
-            CONTENT_TYPE_LOG_ENTRY,
-            CONTENT_TYPE_PERMISSION,
-            CONTENT_TYPE_GROUP,
-            CONTENT_TYPE_USER,
-            CONTENT_TYPE_CONTENT_TYPE,
-            CONTENT_TYPE_SESSION,
-            CONTENT_TYPE_CUSTOM_OPTION,
-            CONTENT_TYPE_CUSTOM_OPTION_ITEM,
-        )
-    )
+    queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
     permission_class = [IsAuthenticated]
     ordering_fields = ["id", "codename", "content_type__model"]
     filterset_fields = ["name", "codename", "content_type__model"]
 
     def get_queryset(self):
-        queryset = super().get_queryset()
         user = getattr(self.request, "user")
 
         if not user:
             return Permission.objects.none()
 
-        return queryset.filter(
-            codename__in=[perm.split(".")[1] for perm in user.get_all_permissions()]
-        )
+        return get_permissions(user)
